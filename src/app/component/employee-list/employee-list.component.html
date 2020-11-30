@@ -1,5 +1,21 @@
 <p>employee-list works!</p>
-<div *ngFor="let emp of employee">
+<table class="table">
+    <tr>
+        <th>Id</th>
+        <th>Name</th>
+        <td>Salary</td>
+        <td>Email</td>
+        <td>Start_Date</td>
+    </tr>
+    <tr *ngFor="let emp of employee">
+        <td>{{emp.id}}</td>
+        <td>{{emp.employeeName}}</td>
+        <td>{{emp.salary}}</td>
+        <td>{{emp.email}}</td>
+        <td>{{emp.localDateTime}}</td>
+    </tr>
+</table>
+<!-- <div *ngFor="let emp of employee">
     <ul>
         <li>{{emp.id}}</li>
         <li>{{emp.employeeName}}</li>
@@ -7,4 +23,4 @@
         <li>{{emp.salary}}</li>
         <li>{{emp.localDateTime}}</li>
     </ul>
-</div>
+</div> -->
