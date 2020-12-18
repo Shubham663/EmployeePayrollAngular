@@ -1,0 +1,34 @@
+<div>
+<p>Enter the id of the record you want to delete and hit submit</p>
+<form class="formDiv" [formGroup]="registerForm" (ngSubmit)="submit()">
+    &nbsp;
+    <mat-form-field class="formWidth">
+            <mat-label>Name</mat-label>
+            <input matInput placeholder="Enter Name"  formControlName="employeeName">
+            <mat-error *ngIf="registerForm.get('employeeName').invalid &&
+            registerForm.get('employeeName').untouched ">name invalid</mat-error>
+     </mat-form-field>
+     <mat-form-field class="formWidth">
+        <mat-label>Email</mat-label>
+        <input matInput placeholder="Enter Email"  formControlName="email">
+     </mat-form-field>
+    <mat-form-field class="formWidth">
+        <mat-label>Salary</mat-label>
+        <input matInput placeholder="Enter Salary"  formControlName="salary">
+    </mat-form-field>
+    <button type="submit" mat-raised-button >Submit</button>
+</form>
+<!-- <mat-form-field>
+    <mat-label>Email</mat-label>
+    <input matInput [(ngModel)]="email"><br>
+</mat-form-field>
+<mat-form-field>
+    <mat-label>Name</mat-label>
+    <input matInput [(ngModel)]="employeeName"><br> 
+</mat-form-field> 
+<mat-form-field> 
+    <mat-label>Salary</mat-label>
+    <input matInput [(ngModel)]="salary">
+</mat-form-field>
+    <button type="submit" mat-raised-button (click)="submit()">Submit</button> -->
+</div>

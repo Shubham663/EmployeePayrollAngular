@@ -1,0 +1,26 @@
+<div class="main">
+    <div>
+            <h2>Login Page</h2>
+    </div>
+    <form class="formDiv" [formGroup]="registerForm" (ngSubmit)="onLogin()">
+        &nbsp;
+        <mat-form-field class="formWidth">
+                <mat-label>Email</mat-label>
+                <input matInput placeholder="Enter Name" type="email" formControlName="email">
+         </mat-form-field>
+         <mat-form-field class="formWidth">
+            <mat-label>Password</mat-label>
+            <input matInput placeholder="Enter Password"  type="password"  formControlName="password">
+         </mat-form-field>
+        <button  mat-raised-button color="primary" type="submit">Login</button>
+        <button  mat-raised-button color="primary" type="button" (click)="onSignUp()">Sign Up</button>
+
+    </form>
+</div>
+<div fxLayout="row" fxLayout.xs="column" fxLayoutAlign="space-evenly center">
+    <mat-card>1</mat-card>
+    <mat-card>2</mat-card>
+    <mat-card>3</mat-card>
+    <mat-card>4</mat-card>
+    <mat-card>5</mat-card>
+</div>

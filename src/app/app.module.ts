@@ -11,13 +11,21 @@ import { InvalidUrlComponent } from './component/invalid-url/invalid-url.compone
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DemoMaterialModule } from './material-module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { DefaultComponent } from './component/default/default.component';
+import { DeleteComponent } from './component/delete/delete.component';
+import { LoginPageComponent } from './component/login-page/login-page.component';
+import { AuthguardGuard } from './service/authguard.guard';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 @NgModule({
   declarations: [
     AppComponent,
     AddEmployeeComponent,
     EmployeeListComponent,
-    InvalidUrlComponent
+    InvalidUrlComponent,
+    DefaultComponent,
+    DeleteComponent,
+    LoginPageComponent
   ],
   imports: [
     BrowserModule,
@@ -26,9 +34,10 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     BrowserAnimationsModule,
     DemoMaterialModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    FlexLayoutModule
   ],
-  providers: [EmployeeServiceService],
+  providers: [EmployeeServiceService,AuthguardGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
