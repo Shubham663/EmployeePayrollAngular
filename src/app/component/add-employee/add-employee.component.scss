@@ -1,14 +1,17 @@
 .formDiv{
     display: flex;
     justify-content: center;
-    align-items: center;
+    padding: 44px 60px;
+    // align-items: center;
     flex-direction: column;;
     border:1px solid #777777;
+    background-color: white;
     width: 36%;
 }
 
-.formWidth{
-    width:40% ;
+
+input{
+    width: 100%;
 }
 
 button{
@@ -20,3 +23,30 @@ button{
     align-items: center;
     flex-direction: column;
 }
+
+.form-head {
+    font: normal normal bold 24px/37px Roboto;
+    letter-spacing: 0px;
+    color: #42515f;
+    text-transform: capitalize;
+    opacity: 1;
+    padding-bottom: 20px;
+}
+
+.formWidth{
+    
+    display: flex;
+    flex-direction: column;
+}
+
+mat-radio-button {
+    margin: 13px;
+}
+
+// input{
+//     width: 100px;
+// }
+
+// td{
+//     padding: 10px;
+// }

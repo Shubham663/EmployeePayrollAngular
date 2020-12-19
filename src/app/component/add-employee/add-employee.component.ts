@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { EmployeeServiceService } from 'src/app/service/employee-service.service';
 
@@ -13,13 +13,25 @@ import { EmployeeServiceService } from 'src/app/service/employee-service.service
 export class AddEmployeeComponent implements OnInit {
   id;
   edit;
+  profileImage:String;
+  // departments:FormGroup
   registerForm: FormGroup;
+  gender;
+  checked1:boolean;
+  options=[
+    {title:'Sales'},{title:'Marketing'},{title:'Products'},{title:'IT'}
+  ]
+  images:String[] =["../../../assets/images/Ellipse -3.png","../../../assets/images/Ellipse -8.png",
+                    "../../../assets/images/Ellipse 1.png","../../../assets/images/Ellipse -7.png"];
   constructor(
     private formBuilder: FormBuilder,
         private userService: EmployeeServiceService,
-        private route:ActivatedRoute
+        private route:ActivatedRoute,
+        private router: Router
   ) { }
+
  ngOnInit(): void {
+   this.checked1 = false;
     this.id = this.route.snapshot.params.id;
     if(this.id != undefined){
       console.log("id inside add-employee " + this.id)
@@ -29,9 +41,26 @@ export class AddEmployeeComponent implements OnInit {
     this.registerForm = this.formBuilder.group({
       employeeName: ['', [Validators.required,Validators.maxLength(10)]],
       email: ['', [Validators.required]],
-      salary: ['', [Validators.required]]
+      salary: ['', [Validators.required]],
+      profileImage: [''],
+      gender:[''],
+      departments: this.formBuilder.array([])
     });
   }
+
+  
+  onChange(title: string, isChecked: boolean) {
+    const emailFormArray = <FormArray>this.registerForm.controls.departments;
+
+    if (isChecked) {
+      emailFormArray.push(new FormControl(title));
+    } else {
+      let index = emailFormArray.controls.findIndex(x => x.value == title)
+      emailFormArray.removeAt(index);
+    }
+    console.log(emailFormArray.value);
+  }
+  
 
   getEmployeeData():any{
     this.userService.getById(this.id).subscribe(response => 
@@ -45,7 +74,7 @@ export class AddEmployeeComponent implements OnInit {
 
   onSubmit() {
     console.log(this.registerForm.value)
-    // stop here if form is invalid
+    //stop here if form is invalid
     if (this.registerForm.invalid) {
         console.log("Invalid data entered")
         return;
@@ -55,8 +84,8 @@ export class AddEmployeeComponent implements OnInit {
           .subscribe(
               data => {
                       console.log(data)
-                      // this.router.navigate(['']);
-                      this.list();
+                      this.router.navigate(['home']);
+                      // this.list();
 
               },
               error => {
@@ -70,7 +99,8 @@ export class AddEmployeeComponent implements OnInit {
       .subscribe(
         data => {
                 console.log(data)
-                this.list();
+                this.router.navigate(['home']);
+                // this.list();
         },
         error => {
           console.log(error)
