@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { EmployeeServiceService } from 'src/app/service/employee-service.service';
 
@@ -9,6 +9,7 @@ import { EmployeeServiceService } from 'src/app/service/employee-service.service
 })
 export class EmployeeListComponent implements OnInit {
   employeeNum=0;
+  @Input() selected:boolean
   employee :any= [];
   constructor(private empService:EmployeeServiceService,
               private router:Router) { }
@@ -25,7 +26,8 @@ export class EmployeeListComponent implements OnInit {
       console.log("Response " + JSON.stringify(response.object));
     },
     error => {
-      console.log(error)
+      if(error.status == 403)
+      console.log("List might be empty. or some other error occurred")
     });
   }
 
@@ -40,7 +42,8 @@ export class EmployeeListComponent implements OnInit {
       this.empService.delete(response.object).subscribe((data) => {
         // console.log("error occurs inside subscribe")
         console.log(data);
-        window.location.replace('empList');
+        this.getData();
+        this.router.navigate(["home"]);
       },
       error => {
         console.log(error);

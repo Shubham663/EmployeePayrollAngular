@@ -2,18 +2,21 @@
     <div>
             <h2>Login Page</h2>
     </div>
-    <form class="formDiv" [formGroup]="registerForm" (ngSubmit)="onLogin()">
+    <form class="formDiv" [formGroup]="loginForm" (ngSubmit)="onLogin()">
         &nbsp;
         <mat-form-field class="formWidth">
                 <mat-label>Email</mat-label>
-                <input matInput placeholder="Enter Name" type="email" formControlName="email">
+                <input matInput placeholder="Enter Email" type="email" formControlName="email">
+                <mat-error *ngIf="loginForm.get('email').invalid &&
+            loginForm.get('email').touched || loginForm.get('email').dirty">{{getEmailError()}}</mat-error>
          </mat-form-field>
          <mat-form-field class="formWidth">
             <mat-label>Password</mat-label>
-            <input matInput placeholder="Enter Password"  type="password"  formControlName="password">
+            <input matInput placeholder="Enter Password"  type="password"  formControlName="password"><mat-error *ngIf="loginForm.get('email').invalid &&
+            loginForm.get('email').touched || loginForm.get('email').dirty">{{getPasswordError()}}</mat-error>
          </mat-form-field>
-        <button  mat-raised-button color="primary" type="submit">Login</button>
-        <button  mat-raised-button color="primary" type="button" (click)="onSignUp()">Sign Up</button>
+        <button  mat-raised-button color="primary" type="submit" [disabled] = "!loginForm.valid">Login</button>
+        <button  mat-raised-button color="primary" type="button" (click)="onSignUp()" [disabled] = "!loginForm.valid">Sign Up</button>
 
     </form>
 </div>

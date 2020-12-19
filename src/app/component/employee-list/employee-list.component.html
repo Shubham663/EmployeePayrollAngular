@@ -1,51 +1,41 @@
-<header class="header-content header">
-    <div class="logo-content">
-        <img src="../../../assets/images/logo.png">
-        <div>
-            <span class="emp-text">EMPLOYEE</span><br>
-            <span class="emp-text emp-payroll">PAYROLL</span>
+<div *ngIf="selected">
+    <div class="main-content">
+        <div class="header-content">
+            <div class="emp-detail-text">
+                Employee Details
+                <div class="emp-count">{{employeeNum}}</div>
+            </div>
+        <a routerLink="/addForm" class="add-button">
+            <div>
+            <img src="../../../assets/images/add-24px.svg" alt="">Add user
+            </div>
+        </a>
         </div>
     </div>
-</header>
-<div class="main-content">
-    <div class="header-content">
-        <div class="emp-detail-text">
-            Employee Details
-            <div class="emp-count">{{employeeNum}}</div>
-        </div>
-    <a href="addForm" class="add-button">
-        <div>
-        <img src="../../../assets/images/add-24px.svg" alt="">Add user
-        </div>
-    </a>
-    </div>
+    <table id="display" class="table">
+        <tr>
+            <th></th>
+            <th>Name</th>
+            <th>Gender</th>
+            <th>Departments</th>
+            <th>Salary</th>
+            <th>Email</th>
+            <th>Update</th>
+            <th>Delete</th>
+        </tr>
+        <tr *ngFor="let emp of employee">
+            <td><img [src]="emp.profileImage" alt="image not found"></td>
+            <td>{{emp.employeeName}}</td>
+            <td>{{emp.gender}}</td>
+            <td >
+                <div *ngFor="let dept of emp.departments">
+                {{dept}}
+                </div>
+            </td>
+            <td>{{emp.salary}}</td>
+            <td>{{emp.email}}</td>
+            <td><button type="button" mat-raised-button color="primary" (click)="updateEmployee(emp.id)">Update</button></td>
+            <td><button type="button" mat-raised-button color="primary" (click)="deleteEmployee(emp.email)">Delete</button></td>
+        </tr>
+    </table>
 </div>
-<table id="display" class="table">
-    <tr>
-        <th>Id</th>
-        <th>Name</th>
-        <th>Salary</th>
-        <th>Email</th>
-        <th>Start_Date</th>
-        <th>Update</th>
-        <th>Delete</th>
-    </tr>
-    <tr *ngFor="let emp of employee">
-        <td>{{emp.id}}</td>
-        <td>{{emp.employeeName}}</td>
-        <td>{{emp.salary}}</td>
-        <td>{{emp.email}}</td>
-        <td>{{emp.localDateTime}}</td>
-        <td><button type="button" mat-raised-button color="primary" (click)="updateEmployee(emp.id)">Update</button></td>
-        <td><button type="button" mat-raised-button color="primary" (click)="deleteEmployee(emp.email)">Delete</button></td>
-    </tr>
-</table>
-<!-- <div *ngFor="let emp of employee">
-    <ul>
-        <li>{{emp.id}}</li>
-        <li>{{emp.employeeName}}</li>
-        <li>{{emp.email}}</li>
-        <li>{{emp.salary}}</li>
-        <li>{{emp.localDateTime}}</li>
-    </ul>
-</div> -->

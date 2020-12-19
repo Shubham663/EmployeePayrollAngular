@@ -53,7 +53,9 @@ export class EmployeeServiceService {
       body: {
         employeeName: data.employeeName,
         email: data.email,
-        salary: data.salary
+        salary: data.salary,
+        profileImage:data.profileImage,
+        gender: data.gender
       },
       headers:new HttpHeaders().append("Authorisation",localStorage.getItem("token")),
     }

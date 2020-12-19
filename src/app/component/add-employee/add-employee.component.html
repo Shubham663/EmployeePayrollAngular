@@ -1,32 +1,230 @@
+<app-header></app-header>
 <div class="main">
-    <div>
-            <h2>Register</h2>
-    </div>
     <form class="formDiv" [formGroup]="registerForm" (ngSubmit)="onSubmit()">
         &nbsp;
+        
+        <div class="form-head">
+            Employee payroll Form
+        </div>
         <mat-form-field class="formWidth">
                 <mat-label>Name</mat-label>
                 <input matInput placeholder="Enter Name"  formControlName="employeeName">
                 <mat-error *ngIf="registerForm.get('employeeName').invalid &&
                 registerForm.get('employeeName').touched || registerForm.get('employeeName').dirty">{{getFnameError()}}</mat-error>
          </mat-form-field>
+         <!-- <mat-form-field class="formWidth"> -->
+            <label>Profile Image</label>
+            <!-- <mat-radio-group class="profileImage"  [(ngModel)]="profileImage">
+                <mat-radio-button *ngFor="let image of images" [value]="image" name="profileImage" [checked]="image == '../../../assets/images/Ellipse -3.png'" >
+                    <img [src]="image" alt="image not found">
+                </mat-radio-button>{{profileImage}}
+            </mat-radio-group> -->
+            <mat-radio-group class="profile"  formControlName="profileImage">
+                <mat-radio-button value="../../../assets/images/Ellipse -3.png" name="profile1">
+                    <img src="../../../assets/images/Ellipse -3.png" alt="image not found">
+                </mat-radio-button>
+                <mat-radio-button value="../../../assets/images/Ellipse -8.png" name="profile2">
+                    <img src="../../../assets/images/Ellipse -8.png" alt="image not found">
+                </mat-radio-button>
+                <mat-radio-button value="../../../assets/images/Ellipse -7.png" name="profile3">
+                    <img src="../../../assets/images/Ellipse -7.png" alt="image not found">
+                </mat-radio-button>
+                <mat-radio-button value="../../../assets/images/Ellipse 1.png" name="profile4">
+                    <img src="../../../assets/images/Ellipse 1.png" alt="image not found">
+                </mat-radio-button>
+            </mat-radio-group>
+            {{profileImage}}
+        <!-- </mat-form-field> -->
+        <!-- <mat-form-field class="formWidth"> -->
+            <label>Gender</label>
+            <mat-radio-group class="profileImage" formControlName="gender">
+                <mat-radio-button value="Male" name="profile1">
+                    Male
+                </mat-radio-button>
+                <mat-radio-button value="Female" name="profile2">
+                    Female
+                </mat-radio-button>
+            </mat-radio-group>
+            <!-- <label>Department</label>
+            <mat-checkbox formControlName="department">Sales</mat-checkbox> -->
+            <div >
+                <div>Departments</div>
+                <table>
+                    <tr *ngFor="let item of options">
+                        <td><input style="width: 50px;" name="item.title" (change)="onChange(item.title, $event.target.checked)" type="checkbox" [value]="item.title" /></td>
+                        <td>{{ item.title }}</td>
+                    </tr>
+                </table>
+            </div>
+            <!-- </mat-form-field> -->
+        <!-- <mat-form-field>
+            <label>Departments</label>
+            <mat-checkbox
+            class="example-margin"
+            form="checked1"
+            labelPosition="after">
+          Sales
+        </mat-checkbox>{{checked1}} -->
+        <!-- </mat-form-field> -->
          <mat-form-field class="formWidth">
             <mat-label>Email</mat-label>
             <input matInput placeholder="Enter Email"  formControlName="email">
             <mat-error *ngIf="registerForm.get('email').invalid &&
             registerForm.get('email').touched || registerForm.get('email').dirty">{{getEmailError()}}</mat-error>
          </mat-form-field>
-         <!-- <mat-form-field class="formWidth">
-            <mat-label>Date</mat-label>
-            <input matInput placeholder="Enter Date"  formControlName="localDateTime">
-         </mat-form-field> -->
         <mat-form-field class="formWidth">
             <mat-label>Salary</mat-label>
             <input matInput placeholder="Enter Salary"  formControlName="salary">
             <mat-error *ngIf="registerForm.get('salary').invalid &&
             registerForm.get('salary').touched || registerForm.get('salary').dirty">{{getSalaryError()}}</mat-error>
         </mat-form-field>
-        <button  mat-raised-button color="primary" type="button" (click)="list()">Cancel</button>
+
+
+
+
+        <!-- <div class="form-head">
+            Employee payroll Form
+        </div>
+        <div class="row-content">
+            <label class="label text" for="name">Name</label>
+            <div class="input-error">
+                <input class="input" type="text" id="name" name="name" placeholder="your name.." required>
+                <error-output class="text-error" for="text"></error-output>
+            </div> 
+        </div>
+        <div class="row-content">
+            <label class="label text" for="profile" >Profile image</label>
+            <div class="profile-radio-content">
+                <label>
+                    <input type="radio" id="profile1" name="profile"
+                    value="./images/Ellipse -3.png" required>
+                    <img  class="profile" id="image1" src="images/Ellipse -3.png">
+                </label>
+                <label>
+                    <input type="radio" id="profile2" name="profile"
+                    value="images/Ellipse 1.png" required>
+                    <img  class="profile" id="image2" src="images/Ellipse 1.png">
+                </label>
+                <label>
+                    <input type="radio" id="profile3" name="profile"
+                    value="images/Ellipse -8.png" required>
+                    <img  class="profile" id="image3" src="images/Ellipse -8.png">
+                </label>
+                <label>
+                    <input type="radio" id="profile4" name="profile"
+                    value="images/Ellipse -7.png" required>
+                    <img  class="profile" id="image4" src="images/Ellipse -7.png">
+                </label>
+            </div>
+        </div>
+        <div class="row-content">
+            <label class="label text" for="gender" >Gender</label>
+            <div class="gender-radio">
+                <label>
+                    <input type="radio" id="gender1" name="gender" value="Male" required>
+                    <p class= "gender">Male</p>
+                </label>
+                <label>
+                    <input type="radio" id="gender2" name="gender" value="Female" required>
+                    <p class= "gender">Female</p>
+                </label>
+            </div>
+        </div>
+        <div class="row-content">
+            <label class="label text" for="department">Department</label>
+            <div class="gender-radio">
+                <label>
+                    <input type="checkbox" id="department1" name="department" value="Sales">
+                    <p class="gender">Sales</p>
+                </label>
+                <label>
+                    <input type="checkbox" id="department1" name="department" value="Marketing">
+                    <p class="gender">Marketing</p>
+                </label>
+                <label>
+                    <input type="checkbox" id="department1" name="department" value="Products">
+                    <p class="gender">Products</p>
+                </label>
+            </div>
+        </div>
+        <div class="row-content">
+            <label class="label text" for="salary">Salary</label>
+            <input id = "salary" type="range" min="300000" max="500000" step="1000">
+            <output for = "salary" class="salary-output"></output>
+        </div>
+        <div class="row-content">
+            <label class="label text" for="startDate">Start Date</label>
+            <div>
+                <select id="day" name="day">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <option value="10">10</option>
+                    <option value="11">11</option>
+                    <option value="12">12</option>
+                    <option value="13">13</option>
+                    <option value="14">14</option>
+                    <option value="15">15</option>
+                    <option value="16">16</option>
+                    <option value="17">17</option>
+                    <option value="18">18</option>
+                    <option value="19">19</option>
+                    <option value="20">20</option>
+                    <option value="21">21</option>
+                    <option value="22">22</option>
+                    <option value="23">23</option>
+                    <option value="24">24</option>
+                    <option value="25">25</option>
+                    <option value="26">26</option>
+                    <option value="27">27</option>
+                    <option value="28">28</option>
+                    <option value="29">29</option>
+                    <option value="30">30</option>
+                    <option value="31">31</option>
+                </select>
+                <select id="month" name="month">
+                    <option value="Jan">January</option>
+                    <option value="Feb">February</option>
+                    <option value="March">March</option>
+                    <option value="April">April</option>
+                    <option value="May">May</option>
+                    <option value="June">June</option>
+                    <option value="July">July</option>
+                    <option value="Aug">August</option>
+                    <option value="Sept">September</option>
+                    <option value="Oct">October</option>
+                    <option value="Nov">November</option>
+                    <option value="Dec">December</option>
+                </select>
+                <select id="year" name="year">
+                    <option value="2020">2020</option>
+                    <option value="2019">2019</option>
+                    <option value="2018">2018</option>
+                    <option value="2017">2017</option>
+                    <option value="2016">2016</option>
+                </select>
+                <error-output class="select-error" for="startDate"></error-output>
+            </div>
+        </div>
+        <div class="row-content">
+            <label class="label text" for="notes">Notes</label>
+            <textarea id="notes" class="input" name="Notes" placeholder="" style="height:100px"></textarea>
+        </div>
+        <div class="button-parent">
+            <button type="button" class="label text resetButton button cancelButton" onclick="myFunction();" media="all">Cancel</button>
+            <div class="submit-reset">
+                <button type="submit" class="label text button submitButton" id="submitButton" media="all">Submit</button>
+                <button type="reset" class="label text resetButton button" media="all" onclick="resetForm();">Reset</button>
+            </div>
+        </div> -->
+        <!-- <button  mat-raised-button color="primary" type="button" (click)="list()">Cancel</button> -->
+        <button  mat-raised-button color="primary" type="button" routerLink="/home">Cancel</button>
         <button  [disabled] = "!registerForm.valid" mat-raised-button color="primary" type="submit">Save</button>
         <!-- <button  mat-raised-button color="primary" type="button" (click)="update()">Update</button> -->
         <!-- [disabled]="!registerForm.valid" -->

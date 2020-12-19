@@ -11,11 +11,11 @@ import { InvalidUrlComponent } from './component/invalid-url/invalid-url.compone
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DemoMaterialModule } from './material-module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { DefaultComponent } from './component/default/default.component';
-import { DeleteComponent } from './component/delete/delete.component';
 import { LoginPageComponent } from './component/login-page/login-page.component';
 import { AuthguardGuard } from './service/authguard.guard';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { HeaderComponent } from './component/header/header.component';
+import { HomeComponent } from './component/home/home.component';
 
 @NgModule({
   declarations: [
@@ -23,9 +23,9 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     AddEmployeeComponent,
     EmployeeListComponent,
     InvalidUrlComponent,
-    DefaultComponent,
-    DeleteComponent,
-    LoginPageComponent
+    LoginPageComponent,
+    HeaderComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
